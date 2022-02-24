@@ -61,9 +61,11 @@ public class StudentControllerIntegrationTest {
                 .andExpect(jsonPath("$[0].name", Matchers.is("mariam")))
                 .andExpect(jsonPath("$[0].email", Matchers.is("mariam@gmail.com")))
                 .andExpect(jsonPath("$[0].dob", Matchers.is("2000-01-07")))
+                .andExpect(jsonPath("$[0].age", Matchers.is(22)))
                 .andExpect(jsonPath("$[1].name", Matchers.is("alex")))
                 .andExpect(jsonPath("$[1].email", Matchers.is("alex@gmail.com")))
                 .andExpect(jsonPath("$[1].dob", Matchers.is("1954-09-12")))
+                .andExpect(jsonPath("$[1].age", Matchers.is(67)))
         ;
     }
 
