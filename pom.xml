@@ -11,8 +11,7 @@
 	<groupId>com.mrod.studentregistry</groupId>
 	<artifactId>student-registry-rest-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Student Registry REST API</description>
+	<name>Student Registry REST API</name>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
