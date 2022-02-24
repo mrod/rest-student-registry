@@ -31,8 +31,13 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getStudents() {
+    public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    public Student getStudent(Long id) {
+        Optional<Student> optionalStudent = studentRepository.findById(id);
+        return optionalStudent.orElseThrow(() -> new IllegalStateException("No student with the id provided"));
     }
 
     @Transactional
