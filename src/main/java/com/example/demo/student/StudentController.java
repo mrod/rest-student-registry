@@ -32,7 +32,6 @@ public class StudentController {
 
     private final StudentService service;
 
-    @Autowired
     public StudentController(StudentService service) {
         this.service = service;
     }
