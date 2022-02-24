@@ -27,7 +27,8 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findByEmail(Mockito.eq(email)))
                 .thenReturn(Optional.of(new Student("anotherStudent", email, LocalDate.of(1987, Month.JANUARY, 7))));
 
-        assertThrows(IllegalStateException.class, () -> service.addStudent(student));
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> service.addStudent(student));
+        assertEquals("Email taken", exception.getMessage());
     }
 
     @Test
