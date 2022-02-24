@@ -12,6 +12,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.mrod.studentregistry.exceptions.StatusCode;
 import com.mrod.studentregistry.exceptions.StudentRegistryException;
+import com.mrod.studentregistry.model.Student;
+import com.mrod.studentregistry.repository.StudentRepository;
+import com.mrod.studentregistry.service.StudentService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -12,7 +12,7 @@
 //      of such license.
 //
 
-package com.mrod.studentregistry.student;
+package com.mrod.studentregistry.service;
 
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import com.mrod.studentregistry.exceptions.StatusCode;
 import com.mrod.studentregistry.exceptions.StudentRegistryException;
+import com.mrod.studentregistry.model.Student;
+import com.mrod.studentregistry.repository.StudentRepository;
 
 @Service
 public class StudentService {

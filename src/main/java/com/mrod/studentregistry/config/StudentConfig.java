@@ -1,4 +1,4 @@
-package com.mrod.studentregistry.student;
+package com.mrod.studentregistry.config;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -7,6 +7,9 @@ import java.util.Arrays;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.mrod.studentregistry.model.Student;
+import com.mrod.studentregistry.repository.StudentRepository;
 
 @Configuration
 public class StudentConfig {
