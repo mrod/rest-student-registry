@@ -12,7 +12,7 @@
 //      of such license.
 //
 
-package com.mrod.studentregistry.student;
+package com.mrod.studentregistry.student.controller;
 
 import java.time.LocalDate;
 import java.time.Month;

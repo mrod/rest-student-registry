@@ -1,4 +1,4 @@
-package com.mrod.studentregistry.student;
+package com.mrod.studentregistry.student.service;
 
 import java.time.LocalDate;
 import java.time.Month;
