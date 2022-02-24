@@ -10,6 +10,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.mrod.studentregistry.exceptions.StatusCode;
+import com.mrod.studentregistry.exceptions.StudentRegistryException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,8 +30,8 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findByEmail(Mockito.eq(email)))
                 .thenReturn(Optional.of(new Student("anotherStudent", email, LocalDate.of(1987, Month.JANUARY, 7))));
 
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> service.addStudent(student));
-        assertEquals("Email taken", exception.getMessage());
+        StudentRegistryException exception = assertThrows(StudentRegistryException.class, () -> service.addStudent(student));
+        assertEquals(StatusCode.STUDENT_EMAIL_TAKEN, exception.getStatusCode());
     }
 
     @Test

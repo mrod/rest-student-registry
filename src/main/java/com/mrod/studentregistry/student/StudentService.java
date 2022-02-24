@@ -22,6 +22,9 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.mrod.studentregistry.exceptions.StatusCode;
+import com.mrod.studentregistry.exceptions.StudentRegistryException;
+
 @Service
 public class StudentService {
 
@@ -36,8 +39,8 @@ public class StudentService {
     }
 
     public Student getStudent(Long id) {
-        Optional<Student> optionalStudent = studentRepository.findById(id);
-        return optionalStudent.orElseThrow(() -> new IllegalStateException("No student with the id provided"));
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new StudentRegistryException(StatusCode.STUDENT_NOT_FOUND));
     }
 
     @Transactional
@@ -56,7 +59,7 @@ public class StudentService {
     @Transactional
     public void updateStudent(Long id, Student newStudent) {
         Student student = studentRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("No student with that id"));
+                .orElseThrow(() -> new StudentRegistryException(StatusCode.STUDENT_NOT_FOUND));
 
         if (!Objects.equals(newStudent.getEmail(), student.getEmail())) {
             validateEmail(newStudent.getEmail());
@@ -76,7 +79,7 @@ public class StudentService {
     private void validateEmail(String email) {
         Optional<Student> result = studentRepository.findByEmail(email);
         if (result.isPresent()) {
-            throw new IllegalStateException("Email taken");
+            throw new StudentRegistryException(StatusCode.STUDENT_EMAIL_TAKEN);
         }
     }
 }
