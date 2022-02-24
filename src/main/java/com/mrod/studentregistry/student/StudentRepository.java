@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.mrod.studentregistry.student;
 
 import java.util.Optional;
 

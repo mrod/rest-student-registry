@@ -12,7 +12,7 @@
 //      of such license.
 //
 
-package com.example.demo.student;
+package com.mrod.studentregistry.student;
 
 import java.time.LocalDate;
 import java.time.Period;
