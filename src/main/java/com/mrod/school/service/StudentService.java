@@ -43,9 +43,9 @@ public class StudentService {
                 .orElseThrow(() -> new SchoolException(StatusCode.STUDENT_NOT_FOUND));
     }
 
-    public void addStudent(Student student) {
+    public Student addStudent(Student student) {
         validateEmail(student.getEmail());
-        repository.save(student);
+        return repository.save(student);
     }
 
     public void deleteStudent(Long id) {

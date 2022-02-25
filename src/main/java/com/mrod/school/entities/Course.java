@@ -1,6 +1,6 @@
 package com.mrod.school.entities;
 
-import java.util.Objects;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -25,7 +23,7 @@ public class Course {
 
     @ManyToMany(mappedBy = "courses")
     @JsonIgnoreProperties("courses")
-    private Set<Student> students;
+    private Set<Student> students = new HashSet<>();
 
     public Course() {
     }

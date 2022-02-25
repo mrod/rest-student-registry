@@ -49,8 +49,8 @@ public class CourseController {
     }
 
     @PostMapping
-    public void addCourse(@RequestBody Course course) {
-        service.addCourse(course);
+    public Course addCourse(@RequestBody Course course) {
+        return service.addCourse(course);
     }
 
     @DeleteMapping(path = "{courseId}")
@@ -58,5 +58,10 @@ public class CourseController {
         service.deleteCourse(id);
     }
 
+    @PutMapping(path = "{courseId}/student/{studentId}")
+    public Course registerStudent(@PathVariable("courseId") Long courseId,
+                                  @PathVariable("studentId") Long studentId) {
+        return service.registerStudent(courseId, studentId);
+    }
 
 }

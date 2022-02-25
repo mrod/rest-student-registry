@@ -49,8 +49,8 @@ public class StudentController {
     }
 
     @PostMapping
-    public void addStudent(@RequestBody Student student) {
-        service.addStudent(student);
+    public Student addStudent(@RequestBody Student student) {
+        return service.addStudent(student);
     }
 
     @DeleteMapping(path = "{studentId}")
@@ -58,6 +58,7 @@ public class StudentController {
         service.deleteStudent(id);
     }
 
+    // TODO review
     @PutMapping(path = "{studentId}")
     public void updateStudent(@PathVariable("studentId") Long id,
                               @RequestBody Student student) {
