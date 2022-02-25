@@ -18,7 +18,9 @@ public enum StatusCode {
 
     SUCCESS(0, "Success"),
     STUDENT_NOT_FOUND(1, "No student found with the provided criteria"),
-    STUDENT_EMAIL_TAKEN(2, "Student email is taken");
+    COURSE_NOT_FOUND(2, "No course found with the provided criteria"),
+    STUDENT_EMAIL_TAKEN(3, "Student email is taken")
+    ;
 
     private final int code;
     private final String message;

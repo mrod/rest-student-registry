@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.mrod.school.exceptions.StatusCode;
-import com.mrod.school.exceptions.StudentRegistryException;
+import com.mrod.school.exceptions.SchoolException;
 import com.mrod.school.entities.Student;
 import com.mrod.school.repository.StudentRepository;
 import com.mrod.school.service.StudentService;
@@ -33,7 +33,7 @@ class StudentServiceTest {
         Mockito.when(studentRepository.findByEmail(Mockito.eq(email)))
                 .thenReturn(Optional.of(new Student("anotherStudent", email, LocalDate.of(1987, Month.JANUARY, 7))));
 
-        StudentRegistryException exception = assertThrows(StudentRegistryException.class, () -> service.addStudent(student));
+        SchoolException exception = assertThrows(SchoolException.class, () -> service.addStudent(student));
         assertEquals(StatusCode.STUDENT_EMAIL_TAKEN, exception.getStatusCode());
     }
 

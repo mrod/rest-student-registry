@@ -14,11 +14,11 @@
 
 package com.mrod.school.exceptions;
 
-public class StudentRegistryException extends RuntimeException {
+public class SchoolException extends RuntimeException {
 
     private final StatusCode statusCode;
 
-    public StudentRegistryException(StatusCode statusCode) {
+    public SchoolException(StatusCode statusCode) {
         this.statusCode = statusCode;
     }
 

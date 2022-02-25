@@ -39,8 +39,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return Collections.unmodifiableMap(map);
     }
 
-    @ExceptionHandler(StudentRegistryException.class)
-    public ResponseEntity<Object> handleException(StudentRegistryException e) {
+    @ExceptionHandler(SchoolException.class)
+    public ResponseEntity<Object> handleException(SchoolException e) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());  // TODO parse this
         StatusCode statusCode = e.getStatusCode();

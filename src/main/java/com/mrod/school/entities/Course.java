@@ -1,5 +1,6 @@
 package com.mrod.school.entities;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -7,32 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table
 public class Course {
 
-    private static final String SEQUENCE_GENERATOR_NAME = "course_sequence";
-
     @Id
-    @SequenceGenerator(
-            name= SEQUENCE_GENERATOR_NAME,
-            sequenceName = SEQUENCE_GENERATOR_NAME,
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = SEQUENCE_GENERATOR_NAME
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany(mappedBy = "courses")
+    @JsonIgnoreProperties("courses")
     private Set<Student> students;
 
     public Course() {
@@ -64,6 +57,14 @@ public class Course {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
     }
 
     @Override

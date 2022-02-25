@@ -31,7 +31,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.mrod.school.controller.StudentController;
 import com.mrod.school.exceptions.StatusCode;
-import com.mrod.school.exceptions.StudentRegistryException;
+import com.mrod.school.exceptions.SchoolException;
 import com.mrod.school.entities.Student;
 import com.mrod.school.service.StudentService;
 
@@ -74,7 +74,7 @@ public class StudentControllerIntegrationTest {
 
     @Test
     public void testGetStudent_notFound() throws Exception {
-        when(studentService.getStudent(Mockito.anyLong())).thenThrow(new StudentRegistryException(StatusCode.STUDENT_NOT_FOUND));
+        when(studentService.getStudent(Mockito.anyLong())).thenThrow(new SchoolException(StatusCode.STUDENT_NOT_FOUND));
 
         mockMvc.perform(get("/api/v1/students/1"))
                 .andExpect(status().isNotFound())

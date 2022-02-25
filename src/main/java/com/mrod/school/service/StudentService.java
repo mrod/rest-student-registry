@@ -23,45 +23,45 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.mrod.school.exceptions.StatusCode;
-import com.mrod.school.exceptions.StudentRegistryException;
+import com.mrod.school.exceptions.SchoolException;
 import com.mrod.school.entities.Student;
 import com.mrod.school.repository.StudentRepository;
 
 @Service
 public class StudentService {
 
-    private final StudentRepository studentRepository;
+    private final StudentRepository repository;
 
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public StudentService(StudentRepository repository) {
+        this.repository = repository;
     }
 
     public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+        return repository.findAll();
     }
 
     public Student getStudent(Long id) {
-        return studentRepository.findById(id)
-                .orElseThrow(() -> new StudentRegistryException(StatusCode.STUDENT_NOT_FOUND));
+        return repository.findById(id)
+                .orElseThrow(() -> new SchoolException(StatusCode.STUDENT_NOT_FOUND));
     }
 
     @Transactional
     public void addStudent(Student student) {
         validateEmail(student.getEmail());
-        studentRepository.save(student);
+        repository.save(student);
     }
 
     @Transactional
     public void deleteStudent(Long id) {
-        if (studentRepository.existsById(id)) {
-            studentRepository.deleteById(id);
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
         }
     }
 
     @Transactional
     public void updateStudent(Long id, Student newStudent) {
-        Student student = studentRepository.findById(id)
-                .orElseThrow(() -> new StudentRegistryException(StatusCode.STUDENT_NOT_FOUND));
+        Student student = repository.findById(id)
+                .orElseThrow(() -> new SchoolException(StatusCode.STUDENT_NOT_FOUND));
 
         if (!Objects.equals(newStudent.getEmail(), student.getEmail())) {
             validateEmail(newStudent.getEmail());
@@ -75,13 +75,13 @@ public class StudentService {
         if (!Objects.equals(newStudent.getDob(), student.getDob())) {
             student.setDob(newStudent.getDob());
         }
-        studentRepository.save(student);
+        repository.save(student);
     }
 
     private void validateEmail(String email) {
-        Optional<Student> result = studentRepository.findByEmail(email);
+        Optional<Student> result = repository.findByEmail(email);
         if (result.isPresent()) {
-            throw new StudentRegistryException(StatusCode.STUDENT_EMAIL_TAKEN);
+            throw new SchoolException(StatusCode.STUDENT_EMAIL_TAKEN);
         }
     }
 }

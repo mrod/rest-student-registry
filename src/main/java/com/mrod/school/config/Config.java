@@ -3,7 +3,6 @@ package com.mrod.school.config;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 
 import org.springframework.boot.CommandLineRunner;
@@ -15,7 +14,7 @@ import com.mrod.school.entities.Student;
 import com.mrod.school.repository.StudentRepository;
 
 @Configuration
-public class StudentConfig {
+public class Config {
 
     @Bean
     CommandLineRunner commandLineRunner(StudentRepository studentRepository) {
