@@ -18,13 +18,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 
-import com.mrod.school.exceptions.StatusCode;
-import com.mrod.school.exceptions.SchoolException;
 import com.mrod.school.entities.Student;
+import com.mrod.school.exceptions.SchoolException;
+import com.mrod.school.exceptions.StatusCode;
 import com.mrod.school.repository.StudentRepository;
 
 @Service
@@ -45,20 +43,17 @@ public class StudentService {
                 .orElseThrow(() -> new SchoolException(StatusCode.STUDENT_NOT_FOUND));
     }
 
-    @Transactional
     public void addStudent(Student student) {
         validateEmail(student.getEmail());
         repository.save(student);
     }
 
-    @Transactional
     public void deleteStudent(Long id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
         }
     }
 
-    @Transactional
     public void updateStudent(Long id, Student newStudent) {
         Student student = repository.findById(id)
                 .orElseThrow(() -> new SchoolException(StatusCode.STUDENT_NOT_FOUND));

@@ -17,8 +17,6 @@ package com.mrod.school.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 
 import com.mrod.school.entities.Course;
@@ -43,13 +41,11 @@ public class CourseService {
         return repository.findById(id).orElseThrow(() -> new SchoolException(StatusCode.COURSE_NOT_FOUND));
     }
 
-    @Transactional
     public void addCourse(Course course) {
         // TODO validate no other course with the same name
         repository.save(course);
     }
 
-    @Transactional
     public void deleteCourse(Long id) {
         Optional<Course> byId = repository.findById(id);
         if (!byId.isPresent()) {
