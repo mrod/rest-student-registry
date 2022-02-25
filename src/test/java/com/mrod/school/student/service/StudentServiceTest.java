@@ -1,4 +1,4 @@
-package com.mrod.studentregistry.student.service;
+package com.mrod.school.student.service;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -10,11 +10,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.mrod.studentregistry.exceptions.StatusCode;
-import com.mrod.studentregistry.exceptions.StudentRegistryException;
-import com.mrod.studentregistry.model.Student;
-import com.mrod.studentregistry.repository.StudentRepository;
-import com.mrod.studentregistry.service.StudentService;
+import com.mrod.school.exceptions.StatusCode;
+import com.mrod.school.exceptions.StudentRegistryException;
+import com.mrod.school.entities.Student;
+import com.mrod.school.repository.StudentRepository;
+import com.mrod.school.service.StudentService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

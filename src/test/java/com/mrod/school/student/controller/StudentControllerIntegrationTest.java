@@ -12,7 +12,7 @@
 //      of such license.
 //
 
-package com.mrod.studentregistry.student.controller;
+package com.mrod.school.student.controller;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -29,11 +29,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.mrod.studentregistry.controller.StudentController;
-import com.mrod.studentregistry.exceptions.StatusCode;
-import com.mrod.studentregistry.exceptions.StudentRegistryException;
-import com.mrod.studentregistry.model.Student;
-import com.mrod.studentregistry.service.StudentService;
+import com.mrod.school.controller.StudentController;
+import com.mrod.school.exceptions.StatusCode;
+import com.mrod.school.exceptions.StudentRegistryException;
+import com.mrod.school.entities.Student;
+import com.mrod.school.service.StudentService;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

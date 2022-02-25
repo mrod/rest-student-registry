@@ -1,5 +1,5 @@
 
-package com.mrod.studentregistry.student;
+package com.mrod.school;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.mrod.studentregistry.controller.StudentController;
+import com.mrod.school.controller.StudentController;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

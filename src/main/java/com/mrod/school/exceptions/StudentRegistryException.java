@@ -12,7 +12,7 @@
 //      of such license.
 //
 
-package com.mrod.studentregistry.exceptions;
+package com.mrod.school.exceptions;
 
 public class StudentRegistryException extends RuntimeException {
 

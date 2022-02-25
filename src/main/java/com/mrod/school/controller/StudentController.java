@@ -12,7 +12,7 @@
 //      of such license.
 //
 
-package com.mrod.studentregistry.controller;
+package com.mrod.school.controller;
 
 import java.util.List;
 
@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mrod.studentregistry.model.Student;
-import com.mrod.studentregistry.service.StudentService;
+import com.mrod.school.entities.Student;
+import com.mrod.school.service.StudentService;
 
 @RestController
 @RequestMapping("api/v1/students")

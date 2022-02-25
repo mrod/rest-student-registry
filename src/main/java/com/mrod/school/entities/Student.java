@@ -12,18 +12,24 @@
 //      of such license.
 //
 
-package com.mrod.studentregistry.model;
+package com.mrod.school.entities;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table
@@ -46,14 +52,15 @@ public class Student {
     private String email;
     private LocalDate dob;
 
-    public Student() {
-    }
+    @JsonManagedReference
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(
+            name = "course_registered",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Course> courses;
 
-    public Student(Long id, String name, String email, LocalDate dob) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
+    public Student() {
     }
 
     public Student(String name, String email, LocalDate dob) {
@@ -98,6 +105,14 @@ public class Student {
         this.dob = dob;
     }
 
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -105,6 +120,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
+                ", courses=" + courses +
                 '}';
     }
 }
