@@ -23,7 +23,6 @@ public class Course {
     private Long id;
     private String name;
 
-    @JsonIgnore
     @ManyToMany(mappedBy = "courses")
     @JsonIgnoreProperties("courses")
     private Set<Student> students;
