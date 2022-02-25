@@ -39,7 +39,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         body.put("timestamp", LocalDateTime.now());  // TODO parse this
         StatusCode statusCode = e.getStatusCode();
         body.put("statusCode", statusCode.getCode());
-        body.put("message", messageSource.getMessage("status_code" + statusCode.getCode(), null, request.getLocale()));
+        body.put("message", messageSource.getMessage("status_code." + statusCode.getCode(), null, request.getLocale()));
         HttpStatus httpStatus = STATUS_CODE_HTTP_STATUS_MAP.getOrDefault(statusCode, HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(body, httpStatus);
     }
