@@ -17,6 +17,8 @@ package com.mrod.school.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mrod.school.entities.Course;
@@ -28,6 +30,8 @@ import com.mrod.school.repository.StudentRepository;
 
 @Service
 public class CourseService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
 
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
@@ -65,7 +69,12 @@ public class CourseService {
         Course course = courseRepository.findById(courseId).orElseThrow(() -> new SchoolException(StatusCode.COURSE_NOT_FOUND));
         Student student = studentRepository.findById(studentId).orElseThrow(() -> new SchoolException(StatusCode.STUDENT_NOT_FOUND));
 
+        if (course.getStudents().contains(student)) {
+            logger.info("Student '{}' is already registered in course '{}'", student.getId(), course.getId());
+            return course;
+        }
         course.addStudent(student);
+        // Course is NOT the owning side of the N:N relationship, so we have to update both entities
         student.addCourse(course);
         courseRepository.save(course);
         return course;
